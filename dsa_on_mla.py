@@ -86,7 +86,7 @@ def forward_step(x, pos):
     # idx is (B, T, K). We want to select from k (B, t, Dim) along dim 1.
     # k[batch_idx, idx] works via broadcasting: (B,1,1) vs (B,T,K) -> (B,T,K)
     batch_idx = torch.arange(B, device=x.device)[:, None, None]
-    
+
     k_sel = k[batch_idx, idx]                   # (B, T, K, d_c + hd_r)
     v_sel = cache_c_kv[batch_idx, idx]          # (B, T, K, d_c)
 
